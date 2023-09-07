@@ -19,11 +19,12 @@
             @endif
             <form method="POST" action="{{ url('hotels/update') }}" class="card-body" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="id" value="{{ $hotel->id }}">
                 <div class="col d-block d-md-flex d-lg-flex">
                     <div class="col p-2">
-                        <label for="name" class="form-label">Hotel Name*</label>
+                        <label class="form-label">Hotel Name*</label>
                         <input type="text" name="hotel_name" value="{{ $hotel->hotel_name }}" class="form-control"
-                            placeholder="Enter Hotel Name" id="name" required>
+                            placeholder="Enter Hotel Name" required>
                     </div>
                     <div class="col p-2">
                         <label class="form-label" for="email">Hotel Email*</label>
@@ -33,25 +34,25 @@
                 </div>
                 <div class="col d-block d-md-flex d-lg-flex">
                     <div class="col p-2">
-                        <label for="phone" class="form-label">Hotel Phone*</label>
+                        <label class="form-label">Hotel Phone*</label>
                         <input type="text" name="hotel_phone" value="{{ $hotel->hotel_phone }}" class="form-control"
-                            placeholder="Enter Hotel Phone Number" id="phone" required>
+                            placeholder="Enter Hotel Phone Number" required>
                     </div>
                     <div class="col p-2">
-                        <label class="form-label" for="map">Hotel Map*</label>
+                        <label class="form-label">Hotel Map*</label>
                         <input type="text" name="hotel_map" value="{{ $hotel->hotel_map }}" class="form-control"
-                            placeholder="Enter Hotel Map" id="map" required>
+                            placeholder="Enter Hotel Map" required>
                     </div>
                 </div>
                 <div class="col d-block d-md-flex d-lg-flex">
                     <div class="col p-2">
-                        <label for="phone" class="form-label">Hotel Address*</label>
+                        <label class="form-label">Hotel Address*</label>
                         <input type="text" name="hotel_address" value="{{ $hotel->hotel_address }}" class="form-control"
                             placeholder="Enter Hotel Phone Number" id="phone" required>
                     </div>
                     <div class="col p-2">
                         <label class="form-label">Select Township*</label>
-                        <select class="form-select" name="township" aria-label="Default select example" required>
+                        <select class="form-select" name="hotel_township" aria-label="Default select example" required>
                             {{-- <option selected>Choose Township</option> --}}
                             @foreach ($townships as $township)
                                 <option value="">Choose Township</option>
@@ -63,8 +64,8 @@
                 </div>
                 <div class="col d-block d-md-flex d-lg-flex">
                     <div class="col p-2">
-                        <label for="desc" class="form-label">Description*</label>
-                        <textarea name="hotel_desc" id="desc" class="form-control" required placeholder="Enter Description.....">{{ $hotel->hotel_desc }}</textarea>
+                        <label class="form-label">Description*</label>
+                        <textarea name="hotel_desc" class="form-control" required placeholder="Enter Description.....">{{ $hotel->hotel_desc }}</textarea>
                     </div>
                 </div>
 
@@ -114,28 +115,42 @@
                 <div class="col">
                     <div class="col-12 col-md-6 col-lg-6 m-auto">
                         <img class="w-100 rounded mb-1" src="{{ asset('storage/hotel_photos/'.$hotel->hotel_photo) }}" alt="Photo">
-                        <input type="file" accept="image/jpg,image/png,image/jpeg" name="photo"
+                        <input type="file" accept="image/jpg,image/png,image/jpeg" name="hotel_photo"
                                 class="form-control outline-warning">
                     </div>
                 </div>
                 <div class="col text-end mt-3">
-                    <button class="btn btn-outline-success">Update</button>
+                    <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>
             </form>
         </div>
 
-        <h4 class="mt-5 mb-2">Other Photo</h4>
+        <h3 class="mt-5 mb-2">Other Photo</h3>
         <div class="card">
+            <div class="col p-3">
+                <h5 class="my-3">Add New Photos</h5>
+                <form action="{{ url('hotels/photo') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="input-group">
+                        <input type="hidden" name="hotel_id" value="{{ $hotel->id }}">
+                        <input type="file" accept="image/jpg,image/png,image/jpeg" multiple name="photo[]"
+                                class="form-control outline-warning" required>
+                        <button type="submit" class="btn btn-outline-info">Save</button>
+                    </div>
+                </form>
+            </div>
             <div class="col d-md-flex d-lg-flex flex-wrap">
                 @foreach ($hotelPhotos as $hotelPhoto)
                     <div class="col-12 col-md-6 col-lg-6 p-2">
                         <img class="w-100 rounded mb-1" src="{{ asset('storage/hotel_photos/' . $hotelPhoto->photo) }}"
                             alt="Photo">
-                        <form method="POST" action="{{ url('hotel/photo') }}" class="input-group">
+                        <form method="POST" action="{{ url('hotels/photo/update') }}" class="input-group" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $hotelPhoto->id }}">
                             <input type="file" accept="image/jpg,image/png,image/jpeg" name="photo"
                                 class="form-control outline-warning" required>
                             <button type="submit" class="btn btn-outline-info">Update</button>
-                            <a href="{{ url('hotel/photo/delete',$hotelPhoto->id) }}" class="btn btn-outline-danger">Delete</a>
+                            <a href="{{ url('hotels/photo/delete',$hotelPhoto->id) }}" class="btn btn-outline-danger">Delete</a>
                         </form>
                     </div>
                 @endforeach

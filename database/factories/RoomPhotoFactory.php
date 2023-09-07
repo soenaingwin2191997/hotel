@@ -18,7 +18,7 @@ class RoomPhotoFactory extends Factory
     {
         return [
             'room_id'=>rand(1,300),
-            'room_other_photo'=>"room".rand(1,20).".jpg",
+            'photo'=>"room".rand(1,20).".jpg",
         ];
     }
 }

@@ -21,7 +21,7 @@
                 @csrf
                 <div class="col d-block d-md-flex d-lg-flex">
                     <div class="col p-2">
-                        <label class="form-label">Select Hotel</label>
+                        <label class="form-label">Select Hotel*</label>
                         <select class="form-select" name="hotel_id" aria-label="Default select example" required>
                             <option selected value="">Choose Hotel</option>
                             @foreach ($hotels as $hotel)
@@ -30,35 +30,34 @@
                         </select>
                     </div>
                     <div class="col p-2">
-                        <label class="form-label">Room No</label>
+                        <label class="form-label">Room No*</label>
                         <input type="number" name="room_number" class="form-control" placeholder="Enterb Room Number"
                             required>
                     </div>
                 </div>
                 <div class="col d-block d-md-flex d-lg-flex">
                     <div class="col p-2">
-                        <label class="form-label">Room Photo</label>
+                        <label class="form-label">Room Photo*</label>
                         <input type="file" accept="image/jpg,image/png,image/jpeg" name="room_photo" class="form-control"
                             required>
                     </div>
                     <div class="col p-2">
                         <label class="form-label">Other Photo</label>
-                        <input type="file" accept="image/jpg,image/png,image/jpeg" name="room_other_photo[]" multiple
-                            class="form-control">
+                        <input type="file" accept="image/jpg,image/png,image/jpeg" name="room_other_photo[]" multiple class="form-control">
                     </div>
                 </div>
                 <div class="col d-block d-md-flex d-lg-flex">
                     <div class="col p-2">
-                        <label class="form-label">Room Price</label>
+                        <label class="form-label">Room Price*</label>
                         <input type="text" name="room_price" class="form-control" required>
                     </div>
                     <div class="col p-2">
                         <label class="form-label">Select bad</label>
                         <select class="form-select" name="room_bad" aria-label="Default select example" required>
-                            <option selected value="">Choose Bad</option>
+                            <option selected value="">Choose Bad*</option>
                             <option value="1">One Bad</option>
-                            <option value="1">Two Bad</option>
-                            <option value="1">Three Bad</option>
+                            <option value="2">Two Bad</option>
+                            <option value="3">Three Bad</option>
                         </select>
                     </div>
                 </div>
@@ -75,13 +74,33 @@
                         </select>
                     </div>
                     <div class="col p-2">
-                        <label class="form-label">Room Floor</label>
+                        <label class="form-label">Room Floor*</label>
                         <input type="number" name="room_floor" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col d-block d-md-flex d-lg-flex">
+                    <div class="col p-2">
+                        <label class="form-label">Room Type*</label>
+                        <select class="form-select" name="room_type" aria-label="Default select example" required>
+                            <option selected value="">Choose Type</option>
+                            <option value="1">Simple</option>
+                            <option value="2">Premium</option>
+                            <option value="3">Vip</option>
+                        </select>
+                    </div>
+                    <div class="col p-2">
+                        <label class="form-label">Room Status*</label>
+                        <select class="form-select" name="room_status" aria-label="Default select example" required>
+                            <option selected value="">Choose Status</option>
+                            <option value="1">Good</option>
+                            <option value="2">Repair</option>
+                            <option value="3">Damaged</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col ">
                     <div class="col p-2">
-                        <label for="desc" class="form-label">Description</label>
+                        <label for="desc" class="form-label">Description*</label>
                         <textarea name="room_desc" id="desc" class="form-control" required placeholder="Enter Description....."></textarea>
                     </div>
                 </div>
@@ -103,6 +122,9 @@
                     </div>
                     <div class="mx-2">
                         <input type="checkbox" name="breakfast" class="me-2"><span class="fw-bold">Breakfast</span>
+                    </div>
+                    <div class="mx-2">
+                        <input type="checkbox" name="lunch" class="me-2"><span class="fw-bold">Lunch</span>
                     </div>
                     <div class="mx-2">
                         <input type="checkbox" name="bathroom" class="me-2"><span class="fw-bold">Bath Room</span>

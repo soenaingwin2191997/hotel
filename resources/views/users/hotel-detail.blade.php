@@ -38,7 +38,7 @@
                     <h6><i class="fa-solid fa-envelope-circle-check me-2"></i>{{ $hotel->hotel_email }}</h6>
                     <h6><i class="fa-solid fa-phone me-2"></i>{{ $hotel->hotel_phone }}</h6>
                     <h6><i class="fa-solid fa-address-card me-2"></i>{{ $hotel->hotel_address }}</h6>
-                    <h6><i class="fa-solid fa-location-dot me-2"></i><a href="#">{{ $hotel->hotel_map }}</a></h6>
+                    <h6><i class="fa-solid fa-location-dot me-2"></i><a target="_blank" href="{{ $hotel->hotel_map }}">Hotel Map</a></h6>
                     <hr>
                     <h4 class="mb-3">Property amenities</h4>
                     <div class="col d-flex">

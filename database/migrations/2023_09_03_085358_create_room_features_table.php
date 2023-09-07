@@ -23,7 +23,7 @@ return new class extends Migration
             $table->bigInteger('lunch')->default(0);
             $table->bigInteger('bathroom')->default(0);
             $table->bigInteger('toilet')->default(0);
-            $table->bigInteger('windows')->default(0);
+            $table->bigInteger('window')->default(0);
             $table->timestamps();
         });
     }

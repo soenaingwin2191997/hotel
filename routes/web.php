@@ -28,15 +28,20 @@ route::middleware(['admin'])->group(function () {
     route::post('hotels', [HotelController::class, 'create']);
     route::get('ajax/hotels', [HotelController::class, 'show']);
     route::get('hotels/update/{id}', [HotelController::class, 'updatePage']);
+    route::post('hotels/update',[HotelController::class,'update']);
     route::get('hotels/delete/{id}',[HotelController::class,'delete']);
 
-    route::get('hotel/photo/delete/{id}',[HotelPhotoController::class,'delete']);
+    route::post('hotels/photo',[HotelPhotoController::class,'create']);
+    route::post('hotels/photo/update',[HotelPhotoController::class,'update']);
+    route::get('hotels/photo/delete/{id}',[HotelPhotoController::class,'delete']);
 
     route::get('rooms', [RoomController::class, 'index']);
     route::get('ajax/rooms',[RoomController::class,'show']);
     route::get('rooms/add', [RoomController::class, 'createPage']);
     Route::post('rooms', [RoomController::class, 'create']);
-    route::get('rooms/delete',[RoomController::class,'delete']);
+    route::get('rooms/update/{id}',[RoomController::class,'updatePage']);
+    route::post('rooms/update',[RoomController::class,'update']);
+    route::get('rooms/delete/{id}',[RoomController::class,'delete']);
 
     Route::get('dark/{id}', [DarkController::class, 'dark']);
     Route::get('light/{id}', [DarkController::class, 'light']);

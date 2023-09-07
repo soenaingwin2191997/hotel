@@ -9,7 +9,7 @@
             </h2>
         <div style="max-width: 600px;" class="m-auto mb-5">
             <form action="{{ url('users/hotel/search') }}" method="GET">
-                <input style="height: 50px;" type="search" name="search" value="{{ request('search') }}" placeholder="Search Hotel By Name or Township" class="form-control border-danger rounded-pill fs-5">
+                <input type="search" name="search" value="{{ request('search') }}" placeholder="Search Hotel With Name or Township" class="form-control py-2 px-4 border-danger rounded-pill fs-5">
             </form>
         </div>
         <div class="col my-3">
@@ -22,7 +22,7 @@
                             <h6>
                                 <a href="{{ url('users/hotel/detail',$hotel->id) }}"><i class="fa-solid fa-hotel me-2"></i>{{ $hotel->hotel_name }}</a>
                             </h6>
-                            <h6><i class="fa-solid fa-city me-2"></i>{{ $hotel->hotel_township }}</h6>
+                            <h6><i class="fa-solid fa-city me-2"></i>{{ $hotel->township_name }}</h6>
                             <h6><i class="fa-solid fa-location-dot me-2"></i>{{ $hotel->hotel_address }}</h6>
                         </div>
                     </div>

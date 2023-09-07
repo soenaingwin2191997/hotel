@@ -27,7 +27,7 @@ class RoomFeatureFactory extends Factory
             'bathroom'=>rand(0,1),
             'city_view'=>rand(0,1),
             'toilet'=>rand(0,1),
-            'windows'=>rand(0,1),
+            'window'=>rand(0,1),
         ];
     }
 }

@@ -9,7 +9,7 @@
         <h3 class="mb-3">Rooms</h3>
         <div class="col mb-2">
             <form action="#">
-                <input type="search" name="" class="form-control m-auto border-danger rounded-pill" style="max-width: 350px;" placeholder="Search By Room No">
+                <input type="search" name="" class="form-control m-auto border-danger rounded-pill" style="max-width: 350px;" placeholder="Search With Room No">
             </form>
         </div>
         <div class="col d-flex">
@@ -68,8 +68,8 @@
                         </td>
                         <td>
                             <a href="#" class="btn btn-sm btn-outline-info roomViewBtn" data-bs-toggle="modal" data-bs-target="#roomViewModal" roomId="{{ $room->id }}">View</a>
-                            <a href="#" class="btn btn-sm btn-outline-success">Update</a>
-                            <a href="#" class="btn btn-sm btn-outline-danger">Delete</a>
+                            <a href="{{ url('rooms/update',$room->id) }}" class="btn btn-sm btn-outline-success">Update</a>
+                            <a href="{{ url('rooms/delete',$room->id) }}" class="btn btn-sm btn-outline-danger">Delete</a>
                         </td>
                     </tr>
                 @endforeach

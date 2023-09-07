@@ -11,6 +11,6 @@ class HotelPhoto extends Model
     protected $fillable = [
         'hotel_id',
         'title',
-        'hotel_other_photo',
+        'photo',
     ];
 }

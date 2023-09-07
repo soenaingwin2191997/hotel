@@ -39,7 +39,7 @@
                     </div>
                     <div class="col p-2">
                         <label class="form-label">Hotel Other Photo</label>
-                        <input type="file" accept="image/jpg,image/png,image/jpeg" name="hotel_other_photo" multiple class="form-control">
+                        <input type="file" accept="image/jpg,image/png,image/jpeg" name="photo[]" multiple class="form-control">
                     </div>
                 </div>
                 <div class="col d-block d-md-flex d-lg-flex">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col p-2">
                         <label class="form-label">Select Township*</label>
-                        <select class="form-select" name="hotel_township" aria-label="Default select example" required>
+                        <select class="form-select" name="township_id" aria-label="Default select example" required>
                             <option selected value="">Choose Township</option>
                             @foreach ($townships as $township)
                                 <option value="{{ $township->id }}">{{ $township->township_name }}</option>
