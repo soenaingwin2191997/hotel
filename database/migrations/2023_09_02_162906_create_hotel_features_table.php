@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('hotel_features', function (Blueprint $table) {
             $table->id();
             $table->integer('hotel_id');
-            $table->bigInteger('pool')->default(0);
-            $table->bigInteger('spa')->default(0);
-            $table->bigInteger('gyn')->default(0);
-            $table->bigInteger('city_view')->default(0);
-            $table->bigInteger('bar')->default(0);
-            $table->bigInteger('elevator')->default(0);
-            $table->bigInteger('car_parking')->default(0);
-            $table->bigInteger('wifi')->default(0);
-            $table->bigInteger('restaurant')->default(0);
-            $table->bigInteger('air_con')->default(0);
+            $table->boolean('pool')->default(0);
+            $table->boolean('spa')->default(0);
+            $table->boolean('gyn')->default(0);
+            $table->boolean('city_view')->default(0);
+            $table->boolean('bar')->default(0);
+            $table->boolean('elevator')->default(0);
+            $table->boolean('car_parking')->default(0);
+            $table->boolean('wifi')->default(0);
+            $table->boolean('restaurant')->default(0);
+            $table->boolean('air_con')->default(0);
             $table->timestamps();
         });
     }

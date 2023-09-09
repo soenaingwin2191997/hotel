@@ -15,9 +15,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('nrc')->nullable();
+            $table->string('passport')->nullable();
             $table->date('birthday')->nullable();
             $table->bigInteger('dark')->default(0);
             $table->integer('roll_value')->default(5);
+            $table->integer('guest_count')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

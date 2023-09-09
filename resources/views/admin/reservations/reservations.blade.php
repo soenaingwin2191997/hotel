@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('reservation')
-    action
+    active
 @endsection
 
 @section('content')
@@ -9,26 +9,13 @@
         <h3 class="mb-3">Reservations</h3>
         <div class="col mb-2">
             <form method="GET" action="{{ url('reservations/search') }}">
-                <input type="search" name="search" class="form-control m-auto border-danger rounded-pill" style="max-width: 350px;" value="{{ request('search') }}" placeholder="Search With Name or Phone No">
+                <input type="search" name="search" class="form-control m-auto border-danger rounded-pill"
+                    style="max-width: 350px;" value="{{ request('search') }}" placeholder="Search With Name or Phone No">
             </form>
         </div>
         <div class="col d-flex">
             <div class="col">
-                {{-- <div class="dropdown d-inline">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div> --}}
                 <span class="h5 ms-3">Total-{{ $total }}</span>
-            </div>
-            <div class="col text-end">
-                <a class="btn btn-outline-success" href="{{ url('rooms/add') }}">Add Reservation</a>
             </div>
         </div>
         <table class="table">
@@ -58,29 +45,66 @@
                             Days
                         </td>
                         <td>
-                            @if ($reservation->room_type==1)
+                            @if ($reservation->room_type == 1)
                                 <span class="badge bg-success">Simple</span>
-                            @elseif ($reservation->room_type==2)
+                            @elseif ($reservation->room_type == 2)
                                 <span class="badge bg-info">Premium</span>
                             @else
                                 <span class="badge bg-primary">Vip</span>
                             @endif
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-outline-info reservationViewBtn" reservationId="{{ $reservation->id }}"
-                                data-bs-toggle="modal" data-bs-target="#reservationModal">View</button>
+                            <button class="btn btn-sm btn-outline-info reservationViewBtn"
+                                reservationId="{{ $reservation->id }}" data-bs-toggle="modal"
+                                data-bs-target="#reservationModal">View</button>
                         </td>
                         <td>
+                            @if ($reservation->action==1)
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Select
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Pending
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="{{ url("reservations/1/$reservation->id") }}">Accept</a></li>
-                                  <li><a class="dropdown-item" href="{{ url("reservations/2/$reservation->id") }}">Reject</a></li>
-                                  <li><a class="dropdown-item" href="{{ url("reservations/3/$reservation->id") }}">Delete</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/2/$reservation->id") }}">Accept</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/3/$reservation->id") }}">Reject</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/4/$reservation->id") }}">Delete</a></li>
                                 </ul>
                             </div>
+                            @elseif ($reservation->action==2)
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-success dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Accept
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/1/$reservation->id") }}">Pending</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/3/$reservation->id") }}">Reject</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/4/$reservation->id") }}">Delete</a></li>
+                                </ul>
+                            </div>
+                            @elseif ($reservation->action==3)
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-warning dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reject
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/1/$reservation->id") }}">Pending</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/2/$reservation->id") }}">Accept</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url("reservations/4/$reservation->id") }}">Delete</a></li>
+                                </ul>
+                            </div>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -142,7 +166,7 @@
                                 </tr>
                                 <tr>
                                     <th>Passport</th>
-                                    <th>Unknown</th>
+                                    <th>${res['passport']}</th>
                                 </tr>
                                 <tr>
                                     <th>Hotel Name</th>

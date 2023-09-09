@@ -85,13 +85,13 @@
                     </li>
 
                     <li class="nav-item nav-category">Services</li>
-                    <li class="nav-item @yield('township')">
+                    <li class="nav-item @yield('reservation')">
                         <a href="{{ url('reservations') }}" class="nav-link">
                             <i class="link-icon" data-feather="calendar"></i>
                             <span class="link-title">Reservations</span>
                         </a>
                     </li>
-                    <li class="nav-item @yield('')">
+                    <li class="nav-item @yield('guest')">
                         <a href="{{ url('guests') }}" class="nav-link">
                             <i class="link-icon" data-feather="calendar"></i>
                             <span class="link-title">Guests</span>
@@ -467,12 +467,7 @@
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <button class="w-100 btn btn-sm"><i class="fa-solid fa-right-from-bracket me-2"></i>Log Out</button>
-                                            {{-- <input class="w-100" type="submit" value="Log Out"> --}}
                                         </form>
-                                        {{-- <a href="javascript:;" class="text-body ms-0">
-                                            <i class="me-2 icon-md" data-feather="log-out"></i>
-                                            <span>Log Out</span>
-                                        </a> --}}
                                     </li>
                                 </ul>
                             </div>

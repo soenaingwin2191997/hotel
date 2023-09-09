@@ -17,11 +17,9 @@ class GuestFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id'=>rand(1,20),
             'hotel_id'=>rand(1,50),
             'room_id'=>rand(1,300),
-            'name'=>$this->faker->name(),
-            'email'=>$this->faker->email(),
-            'phone'=>$this->faker->phoneNumber(),
             'check_in_date'=>$this->faker->dateTimeBetween('now','+1 month'),
             'check_out_date'=>$this->faker->dateTimeBetween('now','+1 month'),
         ];

@@ -42,6 +42,7 @@ route::middleware(['admin'])->group(function () {
     route::get('rooms/update/{id}',[RoomController::class,'updatePage']);
     route::post('rooms/update',[RoomController::class,'update']);
     route::get('rooms/delete/{id}',[RoomController::class,'delete']);
+    route::get('rooms/search',[RoomController::class,'search']);
 
     Route::get('dark/{id}', [DarkController::class, 'dark']);
     Route::get('light/{id}', [DarkController::class, 'light']);
@@ -52,8 +53,14 @@ route::middleware(['admin'])->group(function () {
     route::get('reservations/{action}/{id}',[ReservationController::class,'update']);
 
     route::get('guests', [GuestController::class, 'index']);
+    route::get('guests/add',[GuestController::class,'createPage']);
+    route::post('guests/add',[GuestController::class,'create']);
+    route::get('guests/update/{id}',[GuestController::class,'updatePage']);
+    route::post('guests/update',[GuestController::class,'update']);
     route::get('ajax/guests', [GuestController::class, 'show']);
     route::get('guests/search',[GuestController::class,'search']);
+    route::get('guests/delete/{id}',[GuestController::class,'delete']);
+    route::get('ajax/guests/hotel',[GuestController::class,'ajaxGuestHotel']); // For Add Guest
 });
 
 

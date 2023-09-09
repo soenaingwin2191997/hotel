@@ -11,16 +11,12 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone');
-            $table->string('nrc')->nullable();
-            $table->string('passport')->nullable();
-            $table->date('bitrhday')->nullable();
+            $table->integer('user_id');
             $table->integer('hotel_id');
             $table->integer('room_id');
             $table->date('check_in_date');
             $table->date('check_out_date');
+            $table->integer('action')->default(1);
             $table->timestamps();
         });
     }

@@ -13,17 +13,11 @@ return new class extends Migration
     {
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->integer('hotel_id');
             $table->integer('room_id');
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone');
-            $table->string('nrc')->nullable();
-            $table->string('passport')->nullable();
-            $table->date('birthday')->nullable();
             $table->date('check_in_date');
             $table->date('check_out_date');
-            $table->integer('guest_value')->default(1);
             $table->timestamps();
         });
     }

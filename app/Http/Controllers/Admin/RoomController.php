@@ -16,9 +16,13 @@ class RoomController extends Controller
     function index()
     {
         $rooms = Room::select('*', 'rooms.id as id')
-            ->join('hotels', 'rooms.hotel_id', 'hotels.id')->get();
+            ->join('hotels', 'rooms.hotel_id', 'hotels.id')
+            ->join('townships', 'hotels.township_id', 'townships.id')
+            ->get();
+        $hotels = Hotel::all();
         return view('admin.rooms.rooms', [
             'rooms' => $rooms,
+            'hotels' => $hotels,
         ]);
     }
 
@@ -129,7 +133,8 @@ class RoomController extends Controller
         ]);
     }
 
-    function update(Request $request){
+    function update(Request $request)
+    {
         $request->validate([
             'id' => 'required|numeric',
             'room_number' => 'required|numeric',
@@ -143,14 +148,14 @@ class RoomController extends Controller
         ]);
 
         if ($request->file('room_photo')) {
-            $oldPhoto=Room::find($request->id);
-            $oldPhoto=$oldPhoto->room_photo;
+            $oldPhoto = Room::find($request->id);
+            $oldPhoto = $oldPhoto->room_photo;
             // Storage::delete('public/room_photos',$oldPhoto);
 
             $roomPhoto = uniqid() . '_' . $request->file('room_photo')->getClientOriginalName();
             $request->file('room_photo')->storeAs('public/room_photos', $roomPhoto);
             Room::find($request->id)->update([
-                'room_photo'=>$roomPhoto,
+                'room_photo' => $roomPhoto,
             ]);
         }
 
@@ -176,7 +181,7 @@ class RoomController extends Controller
         $toilet = $request->input('toilet');
         $window = $request->input('window');
 
-        RoomFeature::where('room_id',$request->id)->update([
+        RoomFeature::where('room_id', $request->id)->update([
             'air_con' => $airCon ? 1 : 0,
             'fun' => $fun ? 1 : 0,
             'tv' => $tv ? 1 : 0,
@@ -192,14 +197,33 @@ class RoomController extends Controller
         return back();
     }
 
-    function delete($id){
+    function delete($id)
+    {
         Room::find($id)->delete();
-        RoomFeature::where('room_id',$id)->delete();
-        $roomPhoto=RoomPhoto::where('room_id',$id)->get();
-        foreach($roomPhoto as $rp){
-            Storage::delete('public/hotel_photos/'.$rp->photo);
+        RoomFeature::where('room_id', $id)->delete();
+        $roomPhoto = RoomPhoto::where('room_id', $id)->get();
+        foreach ($roomPhoto as $rp) {
+            Storage::delete('public/hotel_photos/' . $rp->photo);
         }
-        RoomPhoto::where('room_id',$id)->delete();
+        RoomPhoto::where('room_id', $id)->delete();
         return back();
+    }
+
+    function search(Request $request)
+    {
+        $rooms = Room::select('*', 'rooms.id as id')
+            ->join('hotels', 'rooms.hotel_id', 'hotels.id')
+            ->join('townships', 'hotels.township_id', 'townships.id')
+            ->when($request->hotel_id,function($q){
+                $hotelId=request('hotel_id');
+                $q->where('hotels.id',$hotelId);
+            })
+            ->Where('rooms.room_number','like',"%".$request->room_number."%")
+            ->get();
+        $hotels = Hotel::all();
+        return view('admin.rooms.rooms', [
+            'rooms' => $rooms,
+            'hotels' => $hotels,
+        ]);
     }
 }

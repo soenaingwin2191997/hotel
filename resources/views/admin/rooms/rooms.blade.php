@@ -1,30 +1,30 @@
 @extends('layouts.admin')
 
 @section('room')
-    action
+    active
 @endsection
 
 @section('content')
     <div class="col">
         <h3 class="mb-3">Rooms</h3>
         <div class="col mb-2">
-            <form action="#">
-                <input type="search" name="" class="form-control m-auto border-danger rounded-pill" style="max-width: 350px;" placeholder="Search With Room No">
+            <form action="{{ url('rooms/search') }}" method="GET">
+                @csrf
+                <div class="col">
+                    <select style="max-width: 350px" class="form-select rounded-pill border-danger m-auto mb-2" name="hotel_id" aria-label="Default select example">
+                        <option >All Hotels</option>
+                        @foreach ($hotels as $hotel)
+                            <option value="{{ $hotel->id }}" {{ $hotel->id==request('hotel_id')? "selected":"" }}>{{ $hotel->hotel_name }}</option>
+                        @endforeach
+                      </select>
+                </div>
+                <div class="col">
+                    <input type="search" name="room_number" value="{{ request('room_number') }}" class="form-control m-auto border-danger rounded-pill" style="max-width: 350px;" placeholder="Search With Room No">
+                </div>
             </form>
         </div>
         <div class="col d-flex">
             <div class="col">
-                <div class="dropdown d-inline">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Choose Hotels
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
                 <span class="h5 ms-3">Total-{{ $rooms->count() }}</span>
             </div>
             <div class="col text-end">

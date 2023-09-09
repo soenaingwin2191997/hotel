@@ -61,8 +61,8 @@
                         <td>
                             <button class="btn btn-sm btn-outline-success guestViewBtn" guestId="{{ $guest->id }}"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
-                            <a href="{{ url('hotels/update', $guest->id) }}" class="btn btn-sm btn-outline-info">Update</a>
-                            <a href="{{ url('hotels/delete', $guest->id) }}"
+                            <a href="{{ url('guests/update', $guest->id) }}" class="btn btn-sm btn-outline-info">Update</a>
+                            <a href="{{ url('guests/delete', $guest->id) }}"
                                 class="btn btn-sm btn-outline-danger">Delete</a>
                         </td>
                     </tr>

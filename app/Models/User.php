@@ -17,10 +17,12 @@ class User extends Authenticatable
         'email',
         'phone',
         'nrc',
+        'passport',
         'bitrhday',
         'password',
         'dark',
         'roll_value',
+        'guest_count',
     ];
 
     protected $hidden = [

@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('room_features', function (Blueprint $table) {
             $table->id();
             $table->integer('room_id');
-            $table->bigInteger('air_con')->default(0);
-            $table->bigInteger('fun')->default(0);
-            $table->bigInteger('wifi')->default(0);
-            $table->bigInteger('tv')->default(0);
-            $table->bigInteger('city_view')->default(0);
-            $table->bigInteger('breakfast')->default(0);
-            $table->bigInteger('lunch')->default(0);
-            $table->bigInteger('bathroom')->default(0);
-            $table->bigInteger('toilet')->default(0);
-            $table->bigInteger('window')->default(0);
+            $table->boolean('air_con')->default(0);
+            $table->boolean('fun')->default(0);
+            $table->boolean('wifi')->default(0);
+            $table->boolean('tv')->default(0);
+            $table->boolean('city_view')->default(0);
+            $table->boolean('breakfast')->default(0);
+            $table->boolean('lunch')->default(0);
+            $table->boolean('bathroom')->default(0);
+            $table->boolean('toilet')->default(0);
+            $table->boolean('window')->default(0);
             $table->timestamps();
         });
     }
